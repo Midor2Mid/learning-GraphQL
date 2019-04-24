@@ -1,13 +1,26 @@
-/* eslint-disable no-console */
-const logger = require('./logger');
-const app = require('./app');
-const port = app.get('port');
-const server = app.listen(port);
+'use strict';
 
-process.on('unhandledRejection', (reason, p) =>
-  logger.error('Unhandled Rejection at: Promise ', p, reason)
-);
+const { graphql, buildSchema } = require('graphql');
+const schema = buildSchema(`
 
-server.on('listening', () =>
-  logger.info('Feathers application started on http://%s:%d', app.get('host'), port)
-);
+type Query{
+    foo: String
+}
+type Schema{
+    query:Query
+}
+`);
+
+const resolvers = {
+    foo: () => 'bar',
+}
+
+const query = `
+query myFirstQuery {
+    foo
+}
+`;
+
+graphql(schema, query, resolvers)
+    .then((result) => console.log(result))
+    .catch((error) => console.log(error));
