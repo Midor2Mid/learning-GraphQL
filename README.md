@@ -10,3 +10,9 @@
   * type: Query => khai báo các thuộc tính 
   * resolvers: thuộc tính: () => giá trị để khởi tạo các đối tượng cụ thể
   * query=` query myFirstQuery{ các thuộc tính } `
+# Buổi 3:
+* Tạo object type cho các kiểu dữ liệu cơ bản
+  * Tạo type Video{ fields: kiểu dữ liệu} ở schema
+  * Tại resolvers thêm 1 trường video: () => ({ các thuộc tính và giá trị của object đã tạo ở buổi 2})
+  * query tạo 1 trường video { các thuộc tính cách nhau bởi dấu ,}
+  
