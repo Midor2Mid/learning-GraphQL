@@ -6,3 +6,7 @@
   * npm install graphql
 # Buổi 2:
 * Tạo nhiều thuộc tính schema
+* Hiện tại ta đang dùng cấu trúc: 
+  * type: Query => khai báo các thuộc tính 
+  * resolvers: thuộc tính: () => giá trị để khởi tạo các đối tượng cụ thể
+  * query=` query myFirstQuery{ các thuộc tính } `
