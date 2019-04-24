@@ -26,3 +26,17 @@
   }` ta có thể tạo một mảng các documents này `const videos = [videoA, videoB]`
   * Tại resolvers khởi tạo list bằng cách `videos: () => videos`
   * Tại query tạo videos{ các thuộc tính}
+# Buổi 5: Sử dụng graphql như middleware trong express (feathers) 
+* npm install express-graphql (Lưu ý: feathers-graphql hiện giờ báo lỗi -> sử dụng express-graphql)
+    `const express = require('@feathersjs/express');
+    const graphqlHTTP = require('express-graphql');`
+    `const PORT = process.env.PORT || 3000
+    const server = express();`
+    `server.use('/graphql', graphqlHTTP({
+        schema,
+        graphiql: true,
+        rootValue: resolvers,
+    }));
+    server.listen(PORT, () => {
+        console.log(`Listening on http://localhost:${PORT}`);
+    })`
