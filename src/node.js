@@ -1,10 +1,5 @@
 'use strict';
 
-// const {
-//     GraphQLInterfaceType,
-//     GraphQLNonNull,
-//     GraphQLID
-// } = require('graphql');
 const {
 nodeDefinitions,
 fromGlobalId,
@@ -25,21 +20,6 @@ const { nodeInterface, nodeField } = nodeDefinitions(
         return null;
     },
 );
-
-// const nodeInterface = new GraphQLInterfaceType({
-//     name: 'Node',
-//     fields: {
-//         id:{
-//             type: new GraphQLNonNull(GraphQLID),
-//         },
-//     },
-//     resolveType: (object) => {
-//         if(object.title){
-//             return videoType;
-//         }
-//         return null;
-//     },
-// });
 
 exports.nodeInterface = nodeInterface; 
 exports.nodeField = nodeField; 
