@@ -52,7 +52,7 @@
   * Tạo 1 helper function getVideoByID có tác dụng trả về document đầu tiên có id trùng với id được truyền vào.
 * Tại file index.js của project import function vừa viết và truyền vào resolve.
 # Buổi 8: Sử dụng GraphQLNonNull cho những giá trị bắt buộc
-* Tại queryType (đây chính là nơi ta xử lí các câu truy vấn) hiện tại chỉ truy vấn theo id, khi chạy ứng dụng nếu ta ko nhập id vào thì sẽ trả về document là null vì không có giá trị để truy vấn, để người sử dụng có thể biết truyền vào giá trị nào, tại những vùng query bắt buộc phải truyền tham số vào, ta import GraphQLNonNull và sử dụng tại thuộc tính cần truyền vào trong arguments (args).
+* Tại queryType (đây là nơi xử lí truy vấn) hiện tại chỉ truy vấn theo id, khi chạy ứng dụng nếu ko nhập id vào thì sẽ trả về document là null vì không có giá trị để truy vấn, để người sử dụng có thể biết truyền vào giá trị nào, tại những vùng query bắt buộc phải truyền tham số vào, import GraphQLNonNull và sử dụng tại thuộc tính cần truyền vào trong arguments (args).
   * Ví dụ: `id:{
                     type: GraphQLID,
                     description: 'The Video ID.',
