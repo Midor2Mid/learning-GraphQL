@@ -11,6 +11,8 @@ const {
     GraphQLSchema
 } = require('graphql');
 
+const {getVideoById} = require('./data')
+
 const PORT = process.env.PORT || 3000
 const server = express();
 
@@ -43,17 +45,26 @@ const queryType = new GraphQLObjectType({
     fields: {
         video: {
             type: videoType,
-            resolve: () => new Promise((resolve) => {
-                resolve({
-                    id: () => '2',
-                    title: () => 'Roshan',
-                    duration: () => 360,
-                    watched: () => false,
-                })
-            })
-        }
-    }
-})
+            args:{
+                id:{
+                    type: GraphQLID,
+                    description: 'The Video ID.',
+                },
+            },
+            // resolve: () => new Promise((resolve) => {
+            //     resolve({
+            //         id: () => '2',
+            //         title: () => 'Roshan',
+            //         duration: () => 360,
+            //         watched: () => false,
+            //     })
+            // })
+            resolve: (_, args) => {
+                return getVideoById(args.id);
+            },
+        },
+    },
+});
 
 const schema = new GraphQLSchema({
     query: queryType,
@@ -76,22 +87,6 @@ const schema = new GraphQLSchema({
 //     query: Query
 // }
 // `);
-
-const videoA = {
-    id: () => '1',
-    title: () => 'Barron',
-    duration: () => 180,
-    watched: () => true,
-}
-
-const videoB = {
-    id: () => '2',
-    title: () => 'Roshan',
-    duration: () => 360,
-    watched: () => false,
-}
-
-const videos = [videoA, videoB];
 
 // const resolvers = {
 //     video: () => ({

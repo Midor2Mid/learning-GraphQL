@@ -47,3 +47,7 @@
                   GraphQLString,
                   GraphQLInt,
                   GraphQLSchema`...
+# Buổi 7: Sử dụng arguments để query
+* Tạo 1 file index.js trong thư mục /src/data => Lưu dữ liệu và các helper funtions.
+  * Tạo 1 helper function getVideoByID có tác dụng trả về document đầu tiên có id trùng với id được truyền vào.
+* Tại file index.js của project import function vừa viết và truyền vào resolve.
