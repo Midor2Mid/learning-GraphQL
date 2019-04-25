@@ -41,9 +41,9 @@
         console.log(`Listening on http://localhost:${PORT}`);
     })`
 # Buổi 6: Xây dựng GraphQl Schema 
-* graphql có hỗ trợ các kiểu: `GraphQLID,
-                              GraphQLBoolean,
-                              GraphQLObjectType,
-                              GraphQLString,
-                              GraphQLInt,
-                              GraphQLSchema`...
+* graphql hỗ trợ: `GraphQLID,
+                  GraphQLBoolean,
+                  GraphQLObjectType,
+                  GraphQLString,
+                  GraphQLInt,
+                  GraphQLSchema`...
