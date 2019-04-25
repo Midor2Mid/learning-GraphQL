@@ -15,7 +15,12 @@ const {
 } = require('graphql');
 
 const { getVideoById, getVideos, createVideo } = require('./data');
-const { globalIdField } = require('graphql-relay');
+const {
+    globalIdField,
+    connectionDefinitions,
+    connectionFromPromisedArray,
+    connectionArgs,
+} = require('graphql-relay');
 const { nodeInterface, nodeField } = require('./node');
 
 const PORT = process.env.PORT || 3000
@@ -47,6 +52,19 @@ const videoType = new GraphQLObjectType({
     interfaces: [nodeInterface],
 });
 exports.videoType = videoType;
+
+const { connectionType: VideoConnection } = connectionDefinitions({
+    nodeType: videoType,
+    connectionFields:() => ({
+        totalCount:{
+            type: GraphQLInt,
+            description: 'Count total number of Objects',
+            resolve: (conn) => {
+                return conn.edges.length;
+            }
+        }
+    })
+});
 
 const videoInputType = new GraphQLInputObjectType({
     name: 'VideoInput',
@@ -102,8 +120,14 @@ const queryType = new GraphQLObjectType({
     fields: {
         node: nodeField,
         videos: {
-            type: new GraphQLList(videoType),
-            resolve: getVideos
+            // type: new GraphQLList(videoType),
+            // resolve: getVideos
+            type: VideoConnection,
+            args: connectionArgs,
+            resolve: (_, args) => connectionFromPromisedArray(
+                getVideos(),
+                args
+            ),
         },
         video: {
             type: videoType,

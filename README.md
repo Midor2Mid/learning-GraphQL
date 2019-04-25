@@ -88,3 +88,23 @@
 * Sau đó tạo một `videoInputType = new GraphQLInputObjectType` với các fields là các thuộc tính của video (những args đã remove ở mutation).
   * Lưu ý: lúc này, thay vì `return createVideo(args)` phải đổi thành `return createVideo(args.video)`
 # Buổi 12: Thêm interface vào schema GraphQL
+# Buổi 13: Thêm relay node interface vào schema GraphQL
+* npm i graphql-relay
+# Buổi 14: Convert list thành relay connection
+* Lấy kết quả cuối cùng của các objects trong connections: 
+`{
+  videos(last:1){
+    edges{
+      node{
+        id, title,
+        duration
+      }
+    }
+  }
+}`
+* Đếm các objects trong connection: 
+`{
+  videos{
+     totalCount
+   }
+}`
