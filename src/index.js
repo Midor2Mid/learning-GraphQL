@@ -20,6 +20,7 @@ const {
     connectionDefinitions,
     connectionFromPromisedArray,
     connectionArgs,
+    mutationWithClientMutationId
 } = require('graphql-relay');
 const { nodeInterface, nodeField } = require('./node');
 
@@ -66,9 +67,27 @@ const { connectionType: VideoConnection } = connectionDefinitions({
     })
 });
 
-const videoInputType = new GraphQLInputObjectType({
-    name: 'VideoInput',
-    fields: {
+// const videoInputType = new GraphQLInputObjectType({
+//     name: 'VideoInput',
+//     fields: {
+        // title: {
+        //     type: new GraphQLNonNull(GraphQLString),
+        //     description: 'Video title.'
+        // },
+        // duration: {
+        //     type: new GraphQLNonNull(GraphQLInt),
+        //     description: 'Video duration.'
+        // },
+        // watched: {
+        //     type: new GraphQLNonNull(GraphQLBoolean),
+        //     description: 'Video watched or not.'
+        // },
+//     },
+// });
+
+const videoMutation = mutationWithClientMutationId({
+    name: 'AddVideo',
+    inputFields: {
         title: {
             type: new GraphQLNonNull(GraphQLString),
             description: 'Video title.'
@@ -82,15 +101,26 @@ const videoInputType = new GraphQLInputObjectType({
             description: 'Video watched or not.'
         },
     },
+    outputFields:{
+        video: {
+            type: videoType
+        },
+    },
+    mutateAndGetPayload: (args) => new Promise((resolve, reject)=> {
+        Promise.resolve(createVideo(args))
+        .then((video) => resolve({video}))
+        .catch(reject);
+    }),
 });
 
 const mutationType = new GraphQLObjectType({
     name: "Mutation",
     description: 'The root of mutation Type',
     fields: {
-        createVideo: {
-            type: videoType,
-            args: {
+        createVideo: videoMutation,
+        // createVideo: {
+        //     type: videoType,
+        //     args: {
                 // title: {
                 //     type: new GraphQLNonNull(GraphQLString),
                 //     description: 'Video title.'
@@ -103,14 +133,14 @@ const mutationType = new GraphQLObjectType({
                 //     type: new GraphQLNonNull(GraphQLBoolean),
                 //     description: 'Video watched or not.'
                 // },
-                video: {
-                    type: new GraphQLNonNull(videoInputType),
-                },
-            },
-            resolve: (_, args) => {
-                return createVideo(args.video);
-            },
-        },
+        //         video: {
+        //             type: new GraphQLNonNull(videoInputType),
+        //         },
+        //     },
+        //     resolve: (_, args) => {
+        //         return createVideo(args.video);
+        //     },
+        // },
     },
 });
 

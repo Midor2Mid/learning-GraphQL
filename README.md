@@ -108,3 +108,29 @@
      totalCount
    }
 }`
+# Buổi 15: Sử dụng relay nhập object mutations
+* Sử dụng mutation để tạo video.
+`mutation AddVideoQuery($input: AddVideoInput!){
+  createVideo(input: $input){
+    video{
+      title
+    }
+  }
+}`
+  * QUERY VARIABLES:
+  `{
+  "input": {
+    "title": "Video Titles",
+    "duration": 300,
+    "watched": false,
+    "clientMutationId": "abcd"
+  }
+  }`
+* Sử dụng query trả về toàn bộ video trong db (db giả tạo trong index.js của data): 
+`query AllVideosQuery{
+  videos{
+    edges{
+      node{title}
+    }
+  }
+}`

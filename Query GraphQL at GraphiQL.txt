@@ -1,0 +1,98 @@
+
+
+# mutation M{
+#   createVideo(title: "Son", duration:120, watched:true) {
+#     id,
+#     title
+#   }
+# }
+# {
+#   videos{
+#     id,
+#     title
+#   },
+#   video(id:"1")
+#   {
+#     id
+#   }
+# }
+
+# {videos{
+#   id
+# }}
+
+# {
+#   node(id:"VmlkZW86NQ=="){
+#     ... on Video{
+#       title,
+#       id,
+#       duration
+#     }
+#   }
+# }
+
+# {
+#   videos{
+#     edges{
+#       node{
+#         id, title,
+#         duration
+#       }
+#     }
+#   }
+# }
+
+# {
+#   videos{
+#     totalCount
+#   }
+# }
+
+# {
+#   videos(first:1){
+#     edges{
+#       node{
+#         id, title,
+#         duration
+#       }
+#     }
+#   }
+# }
+
+# {
+#   videos(last:1){
+#     edges{
+#       node{
+#         id, title,
+#         duration
+#       }
+#     }
+#   }
+# }
+
+
+mutation AddVideoQuery($input: AddVideoInput!){
+  createVideo(input: $input){
+    video{
+      title
+    }
+  }
+}
+
+query AllVideosQuery{
+  videos{
+    edges{
+      node{title}
+    }
+  }
+}
+
+// QUERY VARIABLES:
+{
+  "input": {
+    "title": "Video Titles",
+    "duration": 300,
+    "watched": false,
+    "clientMutationId": "abcd"
+  }
+}
