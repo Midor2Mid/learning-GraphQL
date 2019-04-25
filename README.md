@@ -87,3 +87,4 @@
                 },`
 * Sau đó tạo một `videoInputType = new GraphQLInputObjectType` với các fields là các thuộc tính của video (những args đã remove ở mutation).
   * Lưu ý: lúc này, thay vì `return createVideo(args)` phải đổi thành `return createVideo(args.video)`
+# Buổi 12: Thêm interface vào schema GraphQL
