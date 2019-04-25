@@ -61,3 +61,11 @@
                     type: new GraphQLNonNull(GraphQLID),
                     description: 'The Video ID.',
                 },`
+# Buổi 9: Sử dụng GraphQLList trả về danh sách
+* Viết một function trả về danh sách các videos (Helpers)
+* Tại index.js import GraphQLList
+  * thêm fields trong queryType một trường videos, khai báo kiểu và function, ví dụ: `videos:{
+            type: new GraphQLList(videoType),
+            resolve: getVideos
+        },`
+        
