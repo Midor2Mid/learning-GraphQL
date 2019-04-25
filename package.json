@@ -39,6 +39,7 @@
     "cors": "^2.8.5",
     "express-graphql": "^0.8.0",
     "graphql": "^14.2.1",
+    "graphql-relay": "^0.6.0",
     "helmet": "^3.16.0",
     "serve-favicon": "^2.5.0",
     "winston": "^3.2.1"
