@@ -4,7 +4,7 @@
   * Vào thư mục project chạy cmd: feathers generate app (đã cài đặt feathers ở global)
   * Xóa toàn bộ nội dung của file index.js tại src/
   * npm install graphql
-# Buổi 2:
+# Buổi 2: Sử dụng các kiểu dữ liệu của GraphQL
 * Tạo nhiều thuộc tính schema
 * Hiện tại ta đang dùng cấu trúc: 
   * type: Query => khai báo các thuộc tính 
@@ -40,3 +40,10 @@
     server.listen(PORT, () => {
         console.log(`Listening on http://localhost:${PORT}`);
     })`
+# Buổi 6: Xây dựng GraphQl Schema 
+* graphql có hỗ trợ các kiểu: `GraphQLID,
+                              GraphQLBoolean,
+                              GraphQLObjectType,
+                              GraphQLString,
+                              GraphQLInt,
+                              GraphQLSchema`...
