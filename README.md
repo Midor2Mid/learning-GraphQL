@@ -68,4 +68,16 @@
             type: new GraphQLList(videoType),
             resolve: getVideos
         },`
-        
+# Buổi 10: Sử dụng mutation thêm document
+* Tại helper viết hàm createVideo để tạo thêm video (push video vào mảng videos với các thông tin được truyền vào function)
+* Tại index.js (program), tạo một mutationType cấu trúc tương tự như queryType và videoType.
+  * Các type này có cấu trúc tương tự nhau: `const <tên> = new <kiểu dữ liệu GraphQL> ({
+    name: <tên>,
+    description: <mô tả>,
+    fields:  { //có thể hiểu như đối số truyền vào
+      <ý nghĩa hành động>: {
+        type: <kiểu>,
+        resolve: <function xử lí cho hành động>
+      }
+    }
+  })
