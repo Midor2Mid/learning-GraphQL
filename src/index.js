@@ -8,7 +8,8 @@ const {
     GraphQLObjectType,
     GraphQLString,
     GraphQLInt,
-    GraphQLSchema
+    GraphQLSchema,
+    GraphQLNonNull
 } = require('graphql');
 
 const {getVideoById} = require('./data')
@@ -47,7 +48,7 @@ const queryType = new GraphQLObjectType({
             type: videoType,
             args:{
                 id:{
-                    type: GraphQLID,
+                    type: new GraphQLNonNull(GraphQLID),
                     description: 'The Video ID.',
                 },
             },
