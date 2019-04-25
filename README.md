@@ -80,4 +80,10 @@
         resolve: <function xử lí cho hành động>
       }
     }
-  })
+  })`
+# Buổi 11: Tạo input object type cho một mutation phức tạp
+* Tại mutation của buổi 10, ta remove toàn bộ args thay bằng `video: {
+                    type: new GraphQLNonNull(videoInputType),
+                },`
+* Sau đó tạo một `videoInputType = new GraphQLInputObjectType` với các fields là các thuộc tính của video (những args đã remove ở mutation).
+  * Lưu ý: lúc này, thay vì `return createVideo(args)` phải đổi thành `return createVideo(args.video)`

@@ -10,7 +10,8 @@ const {
     GraphQLString,
     GraphQLInt,
     GraphQLSchema,
-    GraphQLNonNull
+    GraphQLNonNull,
+    GraphQLInputObjectType
 } = require('graphql');
 
 const { getVideoById, getVideos, createVideo } = require('./data')
@@ -41,6 +42,24 @@ const videoType = new GraphQLObjectType({
     },
 });
 
+const videoInputType = new GraphQLInputObjectType({
+    name: 'VideoInput',
+    fields: {
+        title: {
+            type: new GraphQLNonNull(GraphQLString),
+            description: 'Video title.'
+        },
+        duration: {
+            type: new GraphQLNonNull(GraphQLInt),
+            description: 'Video duration.'
+        },
+        watched: {
+            type: new GraphQLNonNull(GraphQLBoolean),
+            description: 'Video watched or not.'
+        },
+    },
+});
+
 const mutationType = new GraphQLObjectType({
     name: "Mutation",
     description: 'The root of mutation Type',
@@ -48,21 +67,24 @@ const mutationType = new GraphQLObjectType({
         createVideo: {
             type: videoType,
             args: {
-                title: {
-                    type: new GraphQLNonNull(GraphQLString),
-                    description: 'Video title.'
-                },
-                duration: {
-                    type: new GraphQLNonNull(GraphQLInt),
-                    description: 'Video duration.'
-                },
-                watched: {
-                    type: new GraphQLNonNull(GraphQLBoolean),
-                    description: 'Video watched or not.'
+                // title: {
+                //     type: new GraphQLNonNull(GraphQLString),
+                //     description: 'Video title.'
+                // },
+                // duration: {
+                //     type: new GraphQLNonNull(GraphQLInt),
+                //     description: 'Video duration.'
+                // },
+                // watched: {
+                //     type: new GraphQLNonNull(GraphQLBoolean),
+                //     description: 'Video watched or not.'
+                // },
+                video: {
+                    type: new GraphQLNonNull(videoInputType),
                 },
             },
             resolve: (_, args) => {
-                return createVideo(args);
+                return createVideo(args.video);
             },
         },
     },
