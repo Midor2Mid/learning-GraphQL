@@ -140,3 +140,14 @@
   * Query: Các câu lệnh lấy dữ liệu (tương tự method GET trong RestFul API)
   * Mutation: Các câu lệnh để thêm/sửa dữ liệu (tuơng tự method POST/PUT/DELETE trong RestFul API)
   * Subscription: Có chức năng kiểu như Emitter. Client nói với Server rằng “này khi nào có thêm dữ liệu mới thì báo cho tao nhé “. Vậy là Client đang lắng nghe server với sự kiện thêm document mới, do đó, mỗi khi có document mới được thêm vào thì Server sẽ gửi Data cho Client.
+* Cấu trúc: 
+`{
+  query //Operation type: query, mutation, subscription
+  {
+    user // Operation "endpoint"
+    {
+      name //requested field
+      age  //requested field
+    }
+  }
+}`
